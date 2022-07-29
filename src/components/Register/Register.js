@@ -12,6 +12,7 @@ class Register extends React.Component {
 
   onNameChange = (event) => {
     this.setState({name: event.target.value})
+    
   }
 
   onEmailChange = (event) => {
@@ -23,7 +24,7 @@ class Register extends React.Component {
   }
 
   onSubmitSignIn = () => {
-    fetch('http://localhost:3000/register', {
+    fetch('https://face-identifier-pranav.herokuapp.com/register', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -34,8 +35,8 @@ class Register extends React.Component {
     })
       .then(response => response.json())
       .then(user => {
-        if (user) {
-          this.props.loadUser(user)
+        if (user.id) {
+          this.props.loadUser(user);
           this.props.onRouteChange('home');
         }
       })
@@ -43,6 +44,7 @@ class Register extends React.Component {
 
   render() {
     return (
+
       <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
         <main className="pa4 black-80">
           <div className="measure">
